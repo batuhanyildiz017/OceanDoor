@@ -4,25 +4,27 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    const int poolSize = 5;
-    Queue<GameObject> obstaclePool;
-    [SerializeField] GameObject ObstaclePrefab;
-    [SerializeField] Transform spawnPointTransform;
-    [SerializeField] float obstacleSpeed=10f;
-    [SerializeField] Transform playerTransform;
+    const int poolSize = 7;  // engel kuyruðu adeti
+    Queue<GameObject> obstaclePool;  // engel kuyruðu
+    [SerializeField] GameObject ObstaclePrefab; // engel nesnesi
+    [SerializeField] Transform spawnPointTransform;  // engelin oluþturulduðu nokta
+    [SerializeField] float obstacleSpeed=10f;  // engel hýzý
+    [SerializeField] Transform endPointTransform;  //engelin gitmeyi hedeflediði point nokta
+    [SerializeField] float obstacleSpawnInterval = 2f;  // engel oluþturma süresi
     private void Start()
     {
         obstaclePool = new Queue<GameObject>();
 
-        for (int i = 0; i < poolSize; i++)
+        for (int i = 0; i < poolSize; i++)  // poolSize büyüklüðünde engel oluþturarak görünürlüðünü kapatýyor.
         {
             GameObject obstacle = Instantiate(ObstaclePrefab, Vector3.zero, Quaternion.identity);
-            obstacle.SetActive(false);
-            obstaclePool.Enqueue(obstacle);
+            obstacle.SetActive(false);  //engelin görünürlüðünü kapatma
+            obstaclePool.Enqueue(obstacle); //oluþturulan engeli kuyruða gönder.
         }
+        StartCoroutine(SpawnObstacle());   // verilen süreye göre spawnpoint noktasýndan engel oluþturuyor
     }
     
-    GameObject GetObstacleFromPool()
+    GameObject GetObstacleFromPool()  // kuyruktan engel çýkarma ve görünür kýlma
     {
         if (obstaclePool.Count>0)
         {
@@ -32,71 +34,53 @@ public class ObjectPool : MonoBehaviour
         }
         return null;
     }
-    void ReturnObstacleToPool(GameObject obstacle)
+    void ReturnObstacleToPool(GameObject obstacle)  // iþi biten engeli tekrar kuyruða sokma ve görünürlüðünü kapatma
     {
         obstacle.SetActive(false);
         obstaclePool.Enqueue(obstacle);
     }
-    IEnumerator DisableObstacleAfterDelay(GameObject obstacle,float delay)
+    IEnumerator DisableObstacleAfterDelay(GameObject obstacle,float delay)  //oluþturulan engeli deactive etmek için süreli IEnumerator
     {
         yield return new WaitForSeconds(delay);
         ReturnObstacleToPool(obstacle);
     }
-    IEnumerator ActiveObstacleAfterDelay(float delay)
+  /*  IEnumerator ActiveObstacleAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         Shooting();
-    }
-    void Shooting()
+    } */
+    void Shooting()  // engel oluþturma ve belirlenen hýzla endpoint noktasýna yollayan metod
     {
-        Vector3 playerPos = playerTransform.position;
-        Vector3 PosWorld=Camera.main.ScreenToWorldPoint(playerPos);
+        Vector3 endPos = endPointTransform.position;
+        Vector3 PosWorld=Camera.main.ScreenToWorldPoint(endPos);
         Vector3 direction=(PosWorld-spawnPointTransform.position).normalized;
-        Vector3 pos = new Vector3(-1, 0, 0);
-        GameObject obstacle = GetObstacleFromPool();
+        //Vector3 pos = new Vector3(-1, 0, 0);
+        GameObject obstacle = GetObstacleFromPool(); //kuyruktan obejyi alýp obstacle a atýyor.
         if (obstacle!=null)
         {
-            obstacle.transform.position = spawnPointTransform.position;
-            obstacle.SetActive(true);
+            obstacle.transform.position = spawnPointTransform.position; // engelin pozisyonunu spawnpoint pozisyonu olarak güncelliyor.
+            obstacle.SetActive(true); // engeli görünür yapýyor.
 
-            Rigidbody2D obstacleRGB= obstacle.GetComponent<Rigidbody2D>();
-            obstacleRGB.velocity = direction * obstacleSpeed;
-            StartCoroutine(DisableObstacleAfterDelay(obstacle, 4f));
+            Rigidbody2D obstacleRGB= obstacle.GetComponent<Rigidbody2D>(); // engelin rigidbodysini tanýmlama
+            obstacleRGB.velocity = direction * obstacleSpeed;  // engele hýz verme
+            StartCoroutine(DisableObstacleAfterDelay(obstacle, 4f));  // verilen süre sonunda engeli yok etme
         }
     }
-    private void Update()
+    /*private void Update()
     {
-        //StartCoroutine(ActiveObstacleAfterDelay(10f));
+        StartCoroutine(ActiveObstacleAfterDelay(5f));
         //Shooting();
-        // Zamanlayýcý etkinse süreyi güncelleyin
-        ZamanlayiciyiBaslat();
-        if (zamanlayiciAktif)
+        
+        
+    } */
+    IEnumerator SpawnObstacle()  // süreli engel oluþturma coroutine si
+    {
+        while (true)
         {
-            sure -= Time.deltaTime;
-
-            // Süre bittiðinde ZamanlayiciyiDurdur fonksiyonunu çaðýrabilirsiniz
-            if (sure <= 0f)
-            {
-                ZamanlayiciyiDurdur();
-            }
+            yield return new WaitForSeconds(obstacleSpawnInterval);
+            Shooting();
         }
     }
-    public float sure = 3f; // Zamanlayýcýnýn süresi (saniye cinsinden)
-    private bool zamanlayiciAktif = false; // Zamanlayýcýnýn etkin olup olmadýðýný belirten bayrak
 
-    // Zamanlayýcýyý baþlatan fonksiyon
-    public void ZamanlayiciyiBaslat()
-    {
-        zamanlayiciAktif = true;
-        Invoke("ZamanlayiciyiDurdur", sure);
-    }
-
-    // Zamanlayýcýyý durduran fonksiyon
-    public void ZamanlayiciyiDurdur()
-    {
-        zamanlayiciAktif = false;
-        Shooting();
-        // Zamanlayýcý tamamlandýðýnda yapýlmasý gereken iþlemleri buraya ekleyebilirsiniz
-    }
 
 }
