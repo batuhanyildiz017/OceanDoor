@@ -4,35 +4,34 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private bool leftclickControl;
-    private bool rightclickControl;
-    [SerializeField]private float leftRotationAngle;
-    [SerializeField] private float rightRotationAngle;
-    
+    private bool leftclickControl;  //sol butona basýldýðýný kontrol eden deðiþken
+    private bool rightclickControl; //sað tuþa basýldýðýný kontrol eden deðiþken
+    [SerializeField]private float leftRotationAngle;  //butona basýldýðýnda sola dönme açýsý
+    [SerializeField] private float rightRotationAngle; //butona basýldýðýnda saða dönme açýsý
+    public float health; //oyuncu saðlýðý
     
     Rigidbody2D rb;
     public GameObject player;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        //player = GetComponent<GameObject>();
         leftRotationAngle = +1f;
         rightRotationAngle = -1f;
-        
+        health = 5f;
     }
-    public void MakeTrueLeft()
+    public void MakeTrueLeft()  //sol butona basýldýðýný kontrol etme
     {
         leftclickControl = true;
     }
-    public void MakeFalseLeft()
+    public void MakeFalseLeft()  //sol butona basýlmayý býraktýðýný kontrol etme
     {
         leftclickControl=false;
     }
-    public void MakeTrueRight()
+    public void MakeTrueRight() //sað butona basýldýðýný kontrol etme
     {
         rightclickControl = true;
     }
-    public void MakeFalseRight()
+    public void MakeFalseRight() //sað butona basýlmayý býrakýldýðýný kontrol etme
     {
         rightclickControl = false;
     }
@@ -42,9 +41,10 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //rb.velocity=new Vector2 (5f*250*Time.deltaTime,rb.velocity.y);
-        transform.Translate(new Vector3(5f*Time.deltaTime, 0f, 0f));
-        Left();
-        Right();
+        transform.Translate(new Vector3(5f*Time.deltaTime, 0f, 0f)); // x yönünde sürekli hareket ettirir
+                                                                     // rotation ý deðiþtirdiðimiz için x yönü de deðiþir hep ileri gider
+        Left();  //rotasyonu sola çevirme
+        Right(); //rotasyonu saða çevirme
     }
     void Left()
     {

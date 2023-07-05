@@ -10,7 +10,7 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] Transform spawnPointTransform;  // engelin oluþturulduðu nokta
     [SerializeField] float obstacleSpeed=10f;  // engel hýzý
     [SerializeField] Transform endPointTransform;  //engelin gitmeyi hedeflediði point nokta
-    [SerializeField] float obstacleSpawnInterval = 2f;  // engel oluþturma süresi
+    [SerializeField] float obstacleSpawnInterval = 1f;  // engel oluþturma süresi
     private void Start()
     {
         obstaclePool = new Queue<GameObject>();
@@ -34,7 +34,7 @@ public class ObjectPool : MonoBehaviour
         }
         return null;
     }
-    void ReturnObstacleToPool(GameObject obstacle)  // iþi biten engeli tekrar kuyruða sokma ve görünürlüðünü kapatma
+    public void ReturnObstacleToPool(GameObject obstacle)  // iþi biten engeli tekrar kuyruða sokma ve görünürlüðünü kapatma
     {
         obstacle.SetActive(false);
         obstaclePool.Enqueue(obstacle);
@@ -63,7 +63,7 @@ public class ObjectPool : MonoBehaviour
 
             Rigidbody2D obstacleRGB= obstacle.GetComponent<Rigidbody2D>(); // engelin rigidbodysini tanýmlama
             obstacleRGB.velocity = direction * obstacleSpeed;  // engele hýz verme
-            StartCoroutine(DisableObstacleAfterDelay(obstacle, 4f));  // verilen süre sonunda engeli yok etme
+            StartCoroutine(DisableObstacleAfterDelay(obstacle, 8f));  // verilen süre sonunda engeli yok etme
         }
     }
     /*private void Update()
