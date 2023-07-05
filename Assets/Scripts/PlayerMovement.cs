@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rightRotationAngle; //butona basýldýðýnda saða dönme açýsý
     public float health; //oyuncu saðlýðý
     
+    
     Rigidbody2D rb;
     public GameObject player;
     private void Start()
@@ -41,10 +42,15 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //rb.velocity=new Vector2 (5f*250*Time.deltaTime,rb.velocity.y);
-        transform.Translate(new Vector3(5f*Time.deltaTime, 0f, 0f)); // x yönünde sürekli hareket ettirir
-                                                                     // rotation ý deðiþtirdiðimiz için x yönü de deðiþir hep ileri gider
-        Left();  //rotasyonu sola çevirme
-        Right(); //rotasyonu saða çevirme
+        if(GameManager.gameOver==false)  //oyun bitmediyse
+            transform.Translate(new Vector3(5f*Time.deltaTime, 0f, 0f)); // x yönünde sürekli hareket ettirir
+                                                                        // rotation ý deðiþtirdiðimiz için x yönü de deðiþir hep ileri gider
+        if (GameManager.gameOver==false) //oyuncunun caný bitmediyse oyun bitmediyse
+        {
+            Left();  //rotasyonu sola çevirme
+            Right(); //rotasyonu saða çevirme
+        }
+        
     }
     void Left()
     {

@@ -11,8 +11,10 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] float obstacleSpeed=10f;  // engel hýzý
     [SerializeField] Transform endPointTransform;  //engelin gitmeyi hedeflediði point nokta
     [SerializeField] float obstacleSpawnInterval = 1f;  // engel oluþturma süresi
+    
     private void Start()
     {
+         
         obstaclePool = new Queue<GameObject>();
 
         for (int i = 0; i < poolSize; i++)  // poolSize büyüklüðünde engel oluþturarak görünürlüðünü kapatýyor.
@@ -21,7 +23,7 @@ public class ObjectPool : MonoBehaviour
             obstacle.SetActive(false);  //engelin görünürlüðünü kapatma
             obstaclePool.Enqueue(obstacle); //oluþturulan engeli kuyruða gönder.
         }
-        StartCoroutine(SpawnObstacle());   // verilen süreye göre spawnpoint noktasýndan engel oluþturuyor
+            StartCoroutine(SpawnObstacle());   // verilen süreye göre spawnpoint noktasýndan engel oluþturuyor
     }
     
     GameObject GetObstacleFromPool()  // kuyruktan engel çýkarma ve görünür kýlma
@@ -74,12 +76,12 @@ public class ObjectPool : MonoBehaviour
         
     } */
     IEnumerator SpawnObstacle()  // süreli engel oluþturma coroutine si
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(obstacleSpawnInterval);
-            Shooting();
-        }
+    {               
+            while (GameManager.gameOver!=true)  // oyun bitmediði sürece engel oluþtur
+            {
+                yield return new WaitForSeconds(obstacleSpawnInterval);
+                Shooting();
+            }        
     }
 
 
