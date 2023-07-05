@@ -14,9 +14,13 @@ public class GameManager : MonoBehaviour
         gameOver = false;
         GameOverPanel.SetActive(false);
     }
-    public void Restart()
+    public void Restart() //Restart butonuna onclick ile baðlý
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void MainMenu()  // Main Menu butonuna onclick ile baðlý
+    {
+        SceneManager.LoadScene(0,LoadSceneMode.Single);
     }
     // Update is called once per frame
     void Update()
