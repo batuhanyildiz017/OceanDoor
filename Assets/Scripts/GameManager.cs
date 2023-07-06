@@ -5,14 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static bool gameOver;
+    public static bool gameOver; //oyunun bittiðini kontrol eden bool deðer
     public GameObject Player;
-    public GameObject GameOverPanel;
+    public GameObject GameOverPanel; //oyun bittiðinde çýkan panel
+    public static float playerScore; //oyuncunun kazandýðý puan
+    
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.GetFloat("playerScore");
         gameOver = false;
         GameOverPanel.SetActive(false);
+        playerScore = PlayerPrefs.GetFloat("playerScore"); // oyuncunun skorunu playerprefs den çektik
     }
     public void Restart() //Restart butonuna onclick ile baðlý
     {

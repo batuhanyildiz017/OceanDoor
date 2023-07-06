@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    const int poolSize = 7;  // engel kuyruðu adeti
+    const int poolSize = 10;  // engel kuyruðu adeti
     Queue<GameObject> obstaclePool;  // engel kuyruðu
     [SerializeField] GameObject ObstaclePrefab; // engel nesnesi
     [SerializeField] Transform spawnPointTransform;  // engelin oluþturulduðu nokta
     [SerializeField] float obstacleSpeed=10f;  // engel hýzý
     [SerializeField] Transform endPointTransform;  //engelin gitmeyi hedeflediði point nokta
-    [SerializeField] float obstacleSpawnInterval = 1f;  // engel oluþturma süresi
+    [SerializeField] float obstacleSpawnInterval = .4f;  // engel oluþturma süresi
     
     private void Start()
     {
