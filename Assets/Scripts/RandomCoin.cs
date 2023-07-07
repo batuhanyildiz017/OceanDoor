@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomObstacle : MonoBehaviour
+public class RandomCoin : MonoBehaviour
 {
     public GameObject Player;
-    List<GameObject> obstaclePool;  // engel listesi
-    public GameObject objectPrefab; // Oluþturulacak obje prefabý
-    public int numberOfObjects = 200; // Oluþturulacak obje sayýsý
+    List<GameObject> coinPool;  // coin listesi
+    public GameObject coinPrefab; // Oluþturulacak obje prefabý
+    public int numberOfObjects = 100; // Oluþturulacak obje sayýsý
 
     private Vector2 minPoint; // Minimum nokta (sol alt köþe)
     private Vector2 maxPoint; // Maksimum nokta (sað üst köþe)
@@ -18,12 +18,12 @@ public class RandomObstacle : MonoBehaviour
 
     private void Start()
     {
-        obstaclePool = new List<GameObject>();
+        coinPool = new List<GameObject>();
         minPoint = new Vector2(-150, -150);
         maxPoint = new Vector2(150, 150);
 
         SpawnObjects();
-        
+
     }
     private void Update()
     {
@@ -31,7 +31,7 @@ public class RandomObstacle : MonoBehaviour
     }
     void SetActiveFalse()
     {
-        foreach (var item in obstaclePool)
+        foreach (var item in coinPool)
         {
             item.SetActive(false);
         }
@@ -40,7 +40,7 @@ public class RandomObstacle : MonoBehaviour
     {
         bool test1 = false;
         float randomX;
-        float randomY;        
+        float randomY;
         if (Player.transform.position.x >= maxX && Player.transform.position.y >= maxY)
         {
             test1 = true;
@@ -48,7 +48,8 @@ public class RandomObstacle : MonoBehaviour
             maxX += 300;
             minY = maxY;
             maxY += 300;
-        }else if (Player.transform.position.x >= maxX && Player.transform.position.y <= maxY)
+        }
+        else if (Player.transform.position.x >= maxX && Player.transform.position.y <= maxY)
         {
             test1 = true;
             minX = maxX;
@@ -66,7 +67,7 @@ public class RandomObstacle : MonoBehaviour
             maxX = minX;
             minX -= 300;
             maxY = minY;
-            minY -= 300;            
+            minY -= 300;
         }
         else if (Player.transform.position.x <= minX && Player.transform.position.y >= minY)
         {
@@ -81,15 +82,15 @@ public class RandomObstacle : MonoBehaviour
             maxY = minY;
             minY -= 300;
         }
-        if (test1==true)
-        foreach (var item in obstaclePool)
-        {
-            randomX = Random.Range(minX,maxX );
-            randomY = Random.Range(minY,maxY );
-            item.transform.position = new Vector2(randomX,randomY);
-            item.SetActive(true);
+        if (test1 == true)
+            foreach (var item in coinPool)
+            {
+                randomX = Random.Range(minX, maxX);
+                randomY = Random.Range(minY, maxY);
+                item.transform.position = new Vector2(randomX, randomY);
+                item.SetActive(true);
 
-        }
+            }
     }
 
     private void SpawnObjects()
@@ -99,8 +100,8 @@ public class RandomObstacle : MonoBehaviour
             float randomX = Random.Range(minPoint.x, maxPoint.x);
             float randomY = Random.Range(minPoint.y, maxPoint.y);
             Vector2 randomPosition = new Vector2(randomX, randomY);  //random konum oluþtur
-            GameObject obstacle = Instantiate(objectPrefab, randomPosition, Quaternion.identity); //random konumda engel oluþtur
-            obstaclePool.Add(obstacle);  //engeli liste sok
+            GameObject coin = Instantiate(coinPrefab, randomPosition, Quaternion.identity); //random konumda coin oluþtur
+            coinPool.Add(coin);  //coini liste sok
         }
     }
 }

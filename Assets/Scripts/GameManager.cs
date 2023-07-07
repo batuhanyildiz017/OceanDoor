@@ -12,19 +12,26 @@ public class GameManager : MonoBehaviour
     
     // Start is called before the first frame update
     void Start()
-    {
-        PlayerPrefs.GetFloat("playerScore");
+    {       
         gameOver = false;
         GameOverPanel.SetActive(false);
-        playerScore = PlayerPrefs.GetFloat("playerScore"); // oyuncunun skorunu playerprefs den çektik
+        playerScore = PlayerPrefs.GetFloat("PlayerScore"); // oyuncunun skorunu playerprefs den çektik
     }
     public void Restart() //Restart butonuna onclick ile baðlý
     {
+        gameOver = false;
+        Player.GetComponent<PlayerMovement>().health = 5;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        gameOver = false;
+        Player.GetComponent<PlayerMovement>().health = 5;
     }
     public void MainMenu()  // Main Menu butonuna onclick ile baðlý
     {
+        gameOver = false;
+        Player.GetComponent<PlayerMovement>().health = 5;
         SceneManager.LoadScene(0,LoadSceneMode.Single);
+        gameOver = false;
+        Player.GetComponent<PlayerMovement>().health = 5;
     }
     // Update is called once per frame
     void Update()
