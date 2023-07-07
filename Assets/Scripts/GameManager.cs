@@ -2,20 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public static bool gameOver; //oyunun bittiðini kontrol eden bool deðer
+    public static bool gameOver; //oyunun bittiðini kontrol eden bool deðer    
+    public static float playerScore; //oyuncunun kazandýðý puan
+    float distance; //ardaki mesafe
+
+    public TMP_Text scoretable; //score text i 
+    public TMP_Text DistanceText; //mesafe text i
+    
+    public GameObject targetobject; // oyuncunun varacaðý konum
     public GameObject Player;
     public GameObject GameOverPanel; //oyun bittiðinde çýkan panel
-    public static float playerScore; //oyuncunun kazandýðý puan
-    
+
     // Start is called before the first frame update
     void Start()
     {       
         gameOver = false;
         GameOverPanel.SetActive(false);
         playerScore = PlayerPrefs.GetFloat("PlayerScore"); // oyuncunun skorunu playerprefs den çektik
+        scoretable.text = "Gold: "+playerScore.ToString(); // skoru texte yazdýk.
     }
     public void Restart() //Restart butonuna onclick ile baðlý
     {
@@ -36,11 +45,19 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CalculateDistance();
+        scoretable.text= "Gold: "+PlayerPrefs.GetFloat("PlayerScore").ToString();  //skoru update metodunda güncelliyoruz
         if (Player.GetComponent<PlayerMovement>().health <= 0) //playerin caný o ýn altýna düþtüyse gameover true yap
         {
             gameOver = true;
-            GameOverPanel.SetActive(true);
+            GameOverPanel.SetActive(true); //oyun bitiþ panelinin gözükmesi için
+            Player.SetActive(false);  // playerin görünürlüðünü kapama
         }
 
+    }
+    void CalculateDistance()
+    {
+        distance = Vector2.Distance(Player.transform.position, targetobject.transform.position);
+        DistanceText.text = "Kalan Yol: "+distance.ToString();
     }
 }
