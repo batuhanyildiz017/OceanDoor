@@ -13,10 +13,13 @@ public class GameManager : MonoBehaviour
 
     public TMP_Text scoretable; //score text i 
     public TMP_Text DistanceText; //mesafe text i
+    public Image okImage;
+    
     
     public GameObject targetobject; // oyuncunun varacaðý konum
     public GameObject Player;
     public GameObject GameOverPanel; //oyun bittiðinde çýkan panel
+    
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +60,9 @@ public class GameManager : MonoBehaviour
     }
     void CalculateDistance()
     {
+        Vector3 targetDriection = targetobject.transform.position - okImage.rectTransform.position;
+        float aci = Mathf.Atan2(targetDriection.y, targetDriection.x) * Mathf.Rad2Deg;
+        okImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0f, 0f, aci));
         distance = Vector2.Distance(Player.transform.position, targetobject.transform.position);
         DistanceText.text = "Kalan Yol: "+distance.ToString();
     }
