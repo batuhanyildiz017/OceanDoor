@@ -25,7 +25,7 @@ public class ObjectPool : MonoBehaviour
         }
             StartCoroutine(SpawnObstacle());   // verilen süreye göre spawnpoint noktasýndan engel oluþturuyor
     }
-    
+
     GameObject GetObstacleFromPool()  // kuyruktan engel çýkarma ve görünür kýlma
     {
         if (obstaclePool.Count>0)

@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ce99d9265b89d4984f7a8ab9a286fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObstaclePrefab: {fileID: 536746207146645130, guid: 4d83d1ce04dda6245b29eba4b18d2399, type: 3}
+  ObstaclePrefab: {fileID: 9215909279197671188, guid: 79ab8e63116ecba46a2f4d818bfa2d86, type: 3}
   spawnPointTransform: {fileID: 279950901273670595, guid: 2ef956b3f32fec4479b96b4f55ff4212, type: 3}
   obstacleSpeed: 5
   endPointTransform: {fileID: 0}

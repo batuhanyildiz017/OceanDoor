@@ -28,12 +28,6 @@ public class Obstacle : MonoBehaviour
                                          //süresi gelince de objectpooldan kuyruða tekrar giricek elle yapmaya çalýþtýðýmda hata veriyor :D
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void Inýt(Vector3 position)
     {
         obstacle.transform.position = position;

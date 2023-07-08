@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public TMP_Text scoretable; //score text i 
     public TMP_Text DistanceText; //mesafe text i
+    public TMP_Text HealthText;  //caný yazdýracaðýmýz text
     public Image okImage;
     
     
@@ -49,7 +50,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         CalculateDistance();
-        scoretable.text= "Gold: "+PlayerPrefs.GetFloat("PlayerScore").ToString();  //skoru update metodunda güncelliyoruz
+        scoretable.text=PlayerPrefs.GetFloat("PlayerScore").ToString();  //skoru update metodunda güncelliyoruz
+        HealthText.text = Player.GetComponent<PlayerMovement>().health.ToString();
         if (Player.GetComponent<PlayerMovement>().health <= 0) //playerin caný o ýn altýna düþtüyse gameover true yap
         {
             gameOver = true;
@@ -58,12 +60,12 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    void CalculateDistance()
+    void CalculateDistance() //mesafe hesaplayarak mesafe textine yazdýrýyoruz ve okun yönünü çeviriyoruz
     {
         Vector3 targetDriection = targetobject.transform.position - okImage.rectTransform.position;
         float aci = Mathf.Atan2(targetDriection.y, targetDriection.x) * Mathf.Rad2Deg;
         okImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0f, 0f, aci));
-        distance = Vector2.Distance(Player.transform.position, targetobject.transform.position);
-        DistanceText.text = "Kalan Yol: "+distance.ToString();
+        distance = Vector2.Distance(Player.transform.position, targetobject.transform.position);       
+        DistanceText.text =((int)distance).ToString();
     }
 }
