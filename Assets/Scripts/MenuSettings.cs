@@ -7,7 +7,10 @@ public class MenuSettings : MonoBehaviour
 {
     public void PlayButton()
     {
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        PlayerPrefs.SetInt("Scene", 1);  // oyunda bir sonraki seviyeye geçme sistemi
+                                         // daha yapmadýðým için bir sonraki seviyeye geçtiðimde prefsle kaydedicem o zaman bunu kapatýcam
+        PlayerPrefs.GetInt("Scene");
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Scene"), LoadSceneMode.Single);
     }
     public void QuitButton()
     {
@@ -17,6 +20,7 @@ public class MenuSettings : MonoBehaviour
     public void UpgradesButton()
     {
         Debug.Log("Denzialtý upgrade sahnesine gider...");
+        SceneManager.LoadScene(2, LoadSceneMode.Single);
         //Denizaltý geliþtirmek için açýlacak olan sahnenin kodu buraya yazýlacak
     }
 }
