@@ -27,6 +27,11 @@ public class Obstacle : MonoBehaviour
             gameObject.SetActive(false); //engelin görünürlüðünü kapattým
                                          //süresi gelince de objectpooldan kuyruða tekrar giricek elle yapmaya çalýþtýðýmda hata veriyor :D
         }
+        if (collision.CompareTag("Obstacle"))  // engel baþa bir engelle çarpýþýyorsa engeli görünmez yap
+        {
+            gameObject.SetActive(false);
+
+        }
     }
     public void Inýt(Vector3 position)
     {
