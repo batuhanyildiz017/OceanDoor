@@ -51,6 +51,14 @@ public class GameManager : MonoBehaviour
         gameOver = false;
         Player.GetComponent<PlayerMovement>().health = 5;
     }
+    public void ExitButton()  // exit butonuna onclick ile baðlý
+    {
+        gameOver = false;
+        Player.GetComponent<PlayerMovement>().health = 5;
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
+        gameOver = false;
+        Player.GetComponent<PlayerMovement>().health = 5;
+    }
     // Update is called once per frame
     void Update()
     {

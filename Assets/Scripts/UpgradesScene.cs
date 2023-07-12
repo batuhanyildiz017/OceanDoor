@@ -13,12 +13,12 @@ public class UpgradesScene : MonoBehaviour
     public TMP_Text Text2;
     public TMP_Text CoinText;
     int valueOfSprite;
-    bool pressed;  // preview butonuna basýlýp basýlmadðýný kontrol etme
+    //bool pressed;  // preview butonuna basýlýp basýlmadðýný kontrol etme
 
     // Start is called before the first frame update
     void Start()
     {
-        pressed = false;
+        //pressed = false;
         //PlayerPrefs.SetFloat("PlayerScore", 150f); //test için koydum
         CoinText.text = PlayerPrefs.GetFloat("PlayerScore").ToString();
         valueOfSprite =PlayerPrefs.GetInt("SubMarine");
@@ -51,7 +51,7 @@ public class UpgradesScene : MonoBehaviour
 
     public void PreviewButton()
     {
-        pressed = true;  //butona basýlmayý true yap
+        //pressed = true;  //butona basýlmayý true yap
         if (valueOfSprite == 0)
         {
             //fiyatýný text ile yazdýr.
@@ -75,57 +75,69 @@ public class UpgradesScene : MonoBehaviour
     }
     public void ConfirmButton()
     {
-        if (pressed == true) {
-        if (valueOfSprite == 0)
-        {
-            if (PlayerPrefs.GetFloat("PlayerScore") > 80f)
+        
+            if (valueOfSprite == 0)
             {
-                subMarine.sprite = s1;
-                PlayerPrefs.SetInt("SubMarine", 1);
-                PlayerPrefs.SetFloat("PlayerScore", (PlayerPrefs.GetFloat("PlayerScore") - 80f));
-                Text2.text = "Purchase successful";
-            }
-            else
-            {
-                Text2.text = "You dont have enough money";
-            }
+                if (subMarine.sprite == s0)
+                    Text2.text = "Zaten satýn alýnmýþ";
+                else { 
+                if (PlayerPrefs.GetFloat("PlayerScore") > 80f)
+                {
+                    subMarine.sprite = s1;
+                    PlayerPrefs.SetInt("SubMarine", 1);
+                    PlayerPrefs.SetFloat("PlayerScore", (PlayerPrefs.GetFloat("PlayerScore") - 80f));
+                    Text2.text = "Purchase successful";
+                }
+                else
+                {
+                    Text2.text = "You dont have enough money";
+                }
+                }
         }
 
-        if (valueOfSprite == 1)
-        {
-            if (PlayerPrefs.GetFloat("PlayerScore") > 100f)
+            if (valueOfSprite == 1)
             {
-                subMarine.sprite = s2;
-                PlayerPrefs.SetInt("SubMarine", 2);
-                PlayerPrefs.SetFloat("PlayerScore", (PlayerPrefs.GetFloat("PlayerScore") - 100f));
-                Text2.text = "Purchase successful";
-            }
-            else
-            {
-                Text2.text = "You dont have enough money";
-            }
+                if (subMarine.sprite == s1)
+                    Text2.text = "Zaten satýn alýnmýþ";
+                else { 
+                if (PlayerPrefs.GetFloat("PlayerScore") > 100f)
+                {
+                    subMarine.sprite = s2;
+                    PlayerPrefs.SetInt("SubMarine", 2);
+                    PlayerPrefs.SetFloat("PlayerScore", (PlayerPrefs.GetFloat("PlayerScore") - 100f));
+                    Text2.text = "Purchase successful";
+                }
+                else
+                {
+                    Text2.text = "You dont have enough money";
+                }
+                }
         }
-        if (valueOfSprite == 2)
-        {
+            if (valueOfSprite == 2)
+            {
+                if (subMarine.sprite == s2)
+                    Text2.text = "Zaten satýn alýnmýþ";
+                else {
             if (PlayerPrefs.GetFloat("PlayerScore") > 120f)
-            {
-                subMarine.sprite = s3;
-                PlayerPrefs.SetInt("SubMarine", 3);
-                PlayerPrefs.SetFloat("PlayerScore", (PlayerPrefs.GetFloat("PlayerScore") - 120f));
-                Text2.text = "Purchase successful";
-            }
-            else
-            {
-                Text2.text = "You dont have enough money";
-            }
+                {
+                    subMarine.sprite = s3;
+                    PlayerPrefs.SetInt("SubMarine", 3);
+                    PlayerPrefs.SetFloat("PlayerScore", (PlayerPrefs.GetFloat("PlayerScore") - 120f));
+                    Text2.text = "Purchase successful";
+                }
+                else
+                {
+                    Text2.text = "You dont have enough money";
+                }
+                }
         }
         if (valueOfSprite == 3)
         {
             //Text1.text = "Your SubMarine is already the last level.";
             Text2.text = "Your SubMarine is already the last level.";
         }
-        }
-        pressed = false;  // butona basýlmayý false yap ki eðer tekrar preview butonuna basmadýysa satýn alým yapamasýn
+        
+        //pressed = false;  // butona basýlmayý false yap ki eðer tekrar preview butonuna basmadýysa satýn alým yapamasýn
     }
     public void BackButton()
     {
