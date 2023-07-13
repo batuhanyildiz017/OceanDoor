@@ -29,13 +29,6 @@ public class RandomCoin : MonoBehaviour
     {
         SetActiveTrue();
     }
-    void SetActiveFalse()
-    {
-        foreach (var item in coinPool)
-        {
-            item.SetActive(false);
-        }
-    }
     void SetActiveTrue()
     {
         bool test1 = false;

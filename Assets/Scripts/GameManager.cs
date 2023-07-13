@@ -71,6 +71,11 @@ public class GameManager : MonoBehaviour
             GameOverPanel.SetActive(true); //oyun bitiþ panelinin gözükmesi için
             Player.SetActive(false);  // playerin görünürlüðünü kapama
         }
+        if (gameOver==true)
+        {
+            GameOverPanel.SetActive(true); //oyun bitiþ panelinin gözükmesi için
+            Player.SetActive(false);  // playerin görünürlüðünü kapama
+        }
 
     }
     void CalculateDistance() //mesafe hesaplayarak mesafe textine yazdýrýyoruz ve okun yönünü çeviriyoruz

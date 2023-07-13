@@ -8,7 +8,7 @@ public class Coin : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scoreIncrease = 0.5f;
+        scoreIncrease = 1f;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,11 +21,5 @@ public class Coin : MonoBehaviour
             Debug.Log("Deðiþkenden gelen skor "+GameManager.playerScore);
             gameObject.SetActive(false); // coin objesinin görünürlüðünü kapattýk.
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
