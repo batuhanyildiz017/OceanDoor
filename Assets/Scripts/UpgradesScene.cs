@@ -12,6 +12,7 @@ public class UpgradesScene : MonoBehaviour
     public TMP_Text Text1;
     public TMP_Text Text2;
     public TMP_Text CoinText;
+    public TMP_Text PriceText;
     int valueOfSprite;
     //bool pressed;  // preview butonuna basýlýp basýlmadðýný kontrol etme
 
@@ -54,22 +55,26 @@ public class UpgradesScene : MonoBehaviour
         //pressed = true;  //butona basýlmayý true yap
         if (valueOfSprite == 0)
         {
+            PriceText.text = "Price:50";
             //fiyatýný text ile yazdýr.
             subMarine.sprite = s1;
             Text1.text = "Mid SubMarine";
         }
         else if (valueOfSprite == 1)
         {
+            PriceText.text = "Price:80";
             subMarine.sprite = s2;
             Text1.text = "Big SubMarine";
         }
         else if (valueOfSprite == 2)
         {
+            PriceText.text = "Price:100";
             subMarine.sprite = s3;
             Text1.text = "Huge SubMarine";
         }
         else if (valueOfSprite == 3)
         {
+            PriceText.text = " ";
             Text2.text = "Your SubMarine is already the last level.";
         }
     }
@@ -81,11 +86,11 @@ public class UpgradesScene : MonoBehaviour
                 if (subMarine.sprite == s0)
                     Text2.text = "Zaten satýn alýnmýþ";
                 else { 
-                if (PlayerPrefs.GetFloat("PlayerScore") > 80f)
+                if (PlayerPrefs.GetFloat("PlayerScore") > 50f)
                 {
                     subMarine.sprite = s1;
                     PlayerPrefs.SetInt("SubMarine", 1);
-                    PlayerPrefs.SetFloat("PlayerScore", (PlayerPrefs.GetFloat("PlayerScore") - 80f));
+                    PlayerPrefs.SetFloat("PlayerScore", (PlayerPrefs.GetFloat("PlayerScore") - 50f));
                     Text2.text = "Purchase successful";
                 }
                 else
@@ -100,11 +105,11 @@ public class UpgradesScene : MonoBehaviour
                 if (subMarine.sprite == s1)
                     Text2.text = "Zaten satýn alýnmýþ";
                 else { 
-                if (PlayerPrefs.GetFloat("PlayerScore") > 100f)
+                if (PlayerPrefs.GetFloat("PlayerScore") > 80f)
                 {
                     subMarine.sprite = s2;
                     PlayerPrefs.SetInt("SubMarine", 2);
-                    PlayerPrefs.SetFloat("PlayerScore", (PlayerPrefs.GetFloat("PlayerScore") - 100f));
+                    PlayerPrefs.SetFloat("PlayerScore", (PlayerPrefs.GetFloat("PlayerScore") - 80f));
                     Text2.text = "Purchase successful";
                 }
                 else
@@ -118,11 +123,11 @@ public class UpgradesScene : MonoBehaviour
                 if (subMarine.sprite == s2)
                     Text2.text = "Zaten satýn alýnmýþ";
                 else {
-            if (PlayerPrefs.GetFloat("PlayerScore") > 120f)
+            if (PlayerPrefs.GetFloat("PlayerScore") > 100f)
                 {
                     subMarine.sprite = s3;
                     PlayerPrefs.SetInt("SubMarine", 3);
-                    PlayerPrefs.SetFloat("PlayerScore", (PlayerPrefs.GetFloat("PlayerScore") - 120f));
+                    PlayerPrefs.SetFloat("PlayerScore", (PlayerPrefs.GetFloat("PlayerScore") - 100f));
                     Text2.text = "Purchase successful";
                 }
                 else
