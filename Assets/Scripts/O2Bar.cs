@@ -5,39 +5,49 @@ using UnityEngine.UI;
 
 public class O2Bar : MonoBehaviour
 {
-    public float O2,speed;  //oksijen seviyesi,barýn düþme hýzý
+    private float O2,speed;  //oksijen seviyesi,barýn düþme hýzý
     private float maxO2,realScale;  //max oksijen seviyesi
 
     private float timeRemaining = 5;  //düþme deðeri zamanlayýcý
     private bool timerIsRunning = false;  //zamanlayýcýnýn kontrolu
-
-    private string sprite1;
-    public SpriteRenderer PlayerSprite;  //player objesinin sprite ý
+    int valueOfSprite; //kaçýncý lvl denizaltýnda olduðunu gösterecek deðiþken
     // Start is called before the first frame update
     void Start()
     {
-        //PlayerSprite = GetComponent<SpriteRenderer>();
-        sprite1 = PlayerSprite.sprite.ToString();
-        Debug.Log(sprite1);
-        if (sprite1.Equals("little_submarine"))   //player objesinin denizaltý seviyesine göre oksijen seviyelerinin ayarlanmasý
+        speed = 20; //yavaþlama hýzýna deðer
+        valueOfSprite = PlayerPrefs.GetInt("SubMarine");      
+        
+        
+        if (valueOfSprite==0)   //player objesinin denizaltý seviyesine göre oksijen seviyelerinin ayarlanmasý
         {
+            //Debug.Log("Girdikk");
             O2 = 100;
+            
         }
-        else if (sprite1.Equals("submarine2"))
+        else if (valueOfSprite == 1)
         {
             O2 = 150;
+            
         }
-        else if (sprite1.Equals("submarine3"))
+        else if (valueOfSprite == 2)
         {
             O2 = 200;
         }
-        else if (sprite1.Equals("submarine4"))
+        else if (valueOfSprite == 3)
         {
             O2 = 250;
         }
         maxO2 = O2;
         timerIsRunning = true;
     }
+
+   /* private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player")&& O2>0)
+        {
+            O2 += 5;
+        }
+    } */
 
     // Update is called once per frame
     void Update()
@@ -47,6 +57,11 @@ public class O2Bar : MonoBehaviour
         {
             transform.localScale = new Vector3(transform.localScale.x-(transform.localScale.x-realScale)/speed,transform.localScale.y,transform.localScale.z);
         }
+      /*  if (transform.localScale.x < realScale)
+        {
+            transform.localScale = new Vector3(transform.localScale.x + (realScale- transform.localScale.x) / speed, transform.localScale.y, transform.localScale.z);
+        } */
+
         
         if (timerIsRunning)
         {
@@ -57,14 +72,16 @@ public class O2Bar : MonoBehaviour
             else
             {
                 if (O2 > 0)
-                    O2 -= 5;
+                    O2 -= 5;  //5 saniyede bir oksijenimizi 5 kademe düþürüyor
                 timeRemaining = 5;
                 timerIsRunning = true;
 
             }
         }
-        if(O2<0)
-            O2 = 0;
+        if(O2<0)  //barýn - kademeye ya da max kademenin üstüne çýkmasýný engellemek için eþitleme yapýyoruz
+            O2 = 0;  
+        if (O2 > maxO2)
+            O2 = maxO2; 
         if (O2==0)
         {
             GameManager.gameOver = true;  //oksijen bittiðinde oyunu bitirme

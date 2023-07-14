@@ -28,7 +28,8 @@ public class GameManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {       
+    {
+        
         gameOver = false;
         GameOverPanel.SetActive(false);
         playerScore = PlayerPrefs.GetFloat("PlayerScore"); // oyuncunun skorunu playerprefs den çektik
