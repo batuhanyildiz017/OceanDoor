@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private float leftRotationAngle;  //butona basýldýðýnda sola dönme açýsý
     [SerializeField] private float rightRotationAngle; //butona basýldýðýnda saða dönme açýsý
     public float health; //oyuncu saðlýðý
+    float shakeStrength; //kamera sallama gücü
+    float shakeTime;  //kamera sallama süresi
     
     
     Rigidbody2D rb;
@@ -19,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
         leftRotationAngle = +1f;
         rightRotationAngle = -1f;
         health = 5f;
+        shakeTime = 1f;
+        shakeStrength = 3f;
     }
     public void MakeTrueLeft()  //sol butona basýldýðýný kontrol etme
     {
@@ -37,7 +42,15 @@ public class PlayerMovement : MonoBehaviour
         rightclickControl = false;
     }
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Obstacle"))
+        {
+            //Camera.main.DOShakeRotation(shakeTime,shakeStrength,fadeOut:true);
+            Shake.Instance.ShakeCamera(shakeStrength,shakeTime);  // Shake scriptinden çaðýrdýðýmýz kod
+                                                                  // belirlediðimiz güçte ve saniyede bir engele çarptýðýmýzda kamerayý sallýyor
+        }
+    }
     // Update is called once per frame
     void Update()
     {

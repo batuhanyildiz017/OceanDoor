@@ -1072,7 +1072,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 381099142}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 25, y: 15, z: 0}
   m_ConstrainProportionsScale: 0
@@ -1527,6 +1527,7 @@ GameObject:
   m_Component:
   - component: {fileID: 557210901}
   - component: {fileID: 557210900}
+  - component: {fileID: 557210902}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -1589,6 +1590,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &557210902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557210899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e0e895869335ee43a05fe0102557419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &566007201
 GameObject:
   m_ObjectHideFlags: 0
@@ -1848,6 +1861,7 @@ GameObject:
   - component: {fileID: 798858236}
   - component: {fileID: 798858238}
   - component: {fileID: 798858237}
+  - component: {fileID: 798858239}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -1925,6 +1939,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &798858239
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798858235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 5
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1001 &826384464
 PrefabInstance:
   m_ObjectHideFlags: 0
