@@ -7,7 +7,7 @@ public class RandomObstacle : MonoBehaviour
     public GameObject Player;
     List<GameObject> obstaclePool;  // engel listesi
     public GameObject objectPrefab; // Oluþturulacak obje prefabý
-    public int numberOfObjects = 200; // Oluþturulacak obje sayýsý
+    private int numberOfObjects = 100; // Oluþturulacak obje sayýsý
 
     private Vector2 minPoint; // Minimum nokta (sol alt köþe)
     private Vector2 maxPoint; // Maksimum nokta (sað üst köþe)
