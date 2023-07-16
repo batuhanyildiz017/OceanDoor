@@ -79,14 +79,22 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    void CalculateDistance() //mesafe hesaplayarak mesafe textine yazdýrýyoruz ve okun yönünü çeviriyoruz
+    void CalculateDistance()
     {
-        Vector3 targetDriection = targetobject.transform.position - okImage.rectTransform.position;
-        float aci = Mathf.Atan2(targetDriection.y, targetDriection.x) * Mathf.Rad2Deg;
-        okImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0f, 0f, aci));
-        distance = Vector2.Distance(Player.transform.position, targetobject.transform.position);       
-        DistanceText.text =((int)distance).ToString();
+        Vector3 targetDirection = targetobject.transform.position - okImage.rectTransform.position;
+        float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
+        okImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + 180f)); // 180 derece ekleyerek düzeltme yapýlýyor
+        distance = Vector2.Distance(Player.transform.position, targetobject.transform.position);
+        DistanceText.text = ((int)distance).ToString();
     }
+    /* void CalculateDistance() //mesafe hesaplayarak mesafe textine yazdýrýyoruz ve okun yönünü çeviriyoruz
+     {
+         Vector3 targetDriection = targetobject.transform.position - okImage.rectTransform.position;
+         float aci = Mathf.Atan2(targetDriection.y, targetDriection.x) * Mathf.Rad2Deg;
+         okImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0f, 0f, aci));
+         distance = Vector2.Distance(Player.transform.position, targetobject.transform.position);       
+         DistanceText.text =((int)distance).ToString();
+     } */
     void SubMarineLevel()
     {
         valueOfSprite = PlayerPrefs.GetInt("SubMarine");
