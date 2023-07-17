@@ -50,7 +50,13 @@ public class PlayerMovement : MonoBehaviour
             Shake.Instance.ShakeCamera(shakeStrength,shakeTime);  // Shake scriptinden çaðýrdýðýmýz kod
                                                                   // belirlediðimiz güçte ve saniyede bir engele çarptýðýmýzda kamerayý sallýyor
         }
+        if (collision.CompareTag("Energy") && O2Bar.O2<O2Bar.maxO2)
+        {
+            O2Bar.O2 += 10;
+            collision.gameObject.SetActive(false);
+        }
     }
+    
     // Update is called once per frame
     void Update()
     {
@@ -63,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
             Left();  //rotasyonu sola çevirme
             Right(); //rotasyonu saða çevirme
         }
+
         
     }
     void Left()

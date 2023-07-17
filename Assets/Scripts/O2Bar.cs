@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class O2Bar : MonoBehaviour
 {
-    private float O2,speed;  //oksijen seviyesi,barýn düþme hýzý
-    private float maxO2,realScale;  //max oksijen seviyesi
+    public static float O2;
+    private float speed;  //oksijen seviyesi,barýn düþme hýzý
+    public static float maxO2;
+    private float realScale;  //max oksijen seviyesi
 
     private float timeRemaining = 5;  //düþme deðeri zamanlayýcý
     private bool timerIsRunning = false;  //zamanlayýcýnýn kontrolu
@@ -41,14 +43,6 @@ public class O2Bar : MonoBehaviour
         timerIsRunning = true;
     }
 
-   /* private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player")&& O2>0)
-        {
-            O2 += 5;
-        }
-    } */
-
     // Update is called once per frame
     void Update()
     {
@@ -57,10 +51,10 @@ public class O2Bar : MonoBehaviour
         {
             transform.localScale = new Vector3(transform.localScale.x-(transform.localScale.x-realScale)/speed,transform.localScale.y,transform.localScale.z);
         }
-      /*  if (transform.localScale.x < realScale)
+        if (transform.localScale.x < realScale)  //oksijen barýnýn artýþýný hesaplama
         {
             transform.localScale = new Vector3(transform.localScale.x + (realScale- transform.localScale.x) / speed, transform.localScale.y, transform.localScale.z);
-        } */
+        } 
 
         
         if (timerIsRunning)
@@ -71,7 +65,7 @@ public class O2Bar : MonoBehaviour
             }
             else
             {
-                if (O2 > 0)
+                if (O2 > 0 && GameManager.gameOver==false) 
                     O2 -= 5;  //5 saniyede bir oksijenimizi 5 kademe düþürüyor
                 timeRemaining = 5;
                 timerIsRunning = true;

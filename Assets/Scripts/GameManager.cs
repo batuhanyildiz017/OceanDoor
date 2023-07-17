@@ -81,9 +81,9 @@ public class GameManager : MonoBehaviour
     }
     void CalculateDistance()
     {
-        Vector3 targetDirection = targetobject.transform.position - okImage.rectTransform.position;
+        Vector3 targetDirection = targetobject.transform.position - Player.transform.position;
         float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
-        okImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + 180f)); // 180 derece ekleyerek düzeltme yapýlýyor
+        okImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle)); // 180 derece ekleyerek düzeltme yapýlýyor
         distance = Vector2.Distance(Player.transform.position, targetobject.transform.position);
         DistanceText.text = ((int)distance).ToString();
     }
