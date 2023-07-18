@@ -12,18 +12,45 @@ public class PlayerMovement : MonoBehaviour
     public float health; //oyuncu saðlýðý
     float shakeStrength; //kamera sallama gücü
     float shakeTime;  //kamera sallama süresi
-    
+    float valueOfSprite;  //denzialtý seviyesini tutuyoruz
+    float subSpeed;  //denizaltý hýzý
+    SpriteRenderer subSprite;  //denizaltý sprite renderer
     
     Rigidbody2D rb;
     public GameObject player;
     private void Start()
     {
+        SubMarineLevel(); //denizaltýnýn seviyesine göre canýný ve hýzýný deðiþtiriyoruz
+        subSprite =GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        leftRotationAngle = +1f;
-        rightRotationAngle = -1f;
-        health = 5f;
-        shakeTime = 1f;
-        shakeStrength = 3f;
+        leftRotationAngle = +1f;  //sola dönme açýsý
+        rightRotationAngle = -1f;  //saða dönme açýsý
+        //health = 5f;   //oyuncu caný
+        shakeTime = 1f;  //kamerayý sallama süresi
+        shakeStrength = 3f;  //kamerayý sallama gücü
+    }
+    void SubMarineLevel()  //denizaltýnýn seviyesine göre canýný ve hýzýný deðiþtiriyoruz
+    {
+        valueOfSprite = PlayerPrefs.GetInt("SubMarine");  //denzialtý seviyesini tutuyoruz
+        if (valueOfSprite==0)
+        {
+            health = 4f;
+            subSpeed = 5f;
+        }else if (valueOfSprite == 1)
+        {
+            health = 5f;
+            subSpeed = 6.5f;
+        }
+        else if (valueOfSprite==2)
+        {
+            health = 6f;
+            subSpeed = 8f;
+        }
+        else if (valueOfSprite==3)
+        {
+            health = 7f;
+            subSpeed = 9.5f;
+        }
     }
     public void MakeTrueLeft()  //sol butona basýldýðýný kontrol etme
     {
@@ -52,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (collision.CompareTag("Energy") && O2Bar.O2<O2Bar.maxO2)
         {
-            O2Bar.O2 += 10;
+            O2Bar.O2 += 20;
             collision.gameObject.SetActive(false);
         }
     }
@@ -60,15 +87,21 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //rb.velocity=new Vector2 (5f*250*Time.deltaTime,rb.velocity.y);
         if(GameManager.gameOver==false)  //oyun bitmediyse
-            transform.Translate(new Vector3(5f*Time.deltaTime, 0f, 0f)); // x yönünde sürekli hareket ettirir
+            transform.Translate(new Vector3(subSpeed*Time.deltaTime, 0f, 0f)); // x yönünde sürekli hareket ettirir  hýza göre
                                                                         // rotation ý deðiþtirdiðimiz için x yönü de deðiþir hep ileri gider
         if (GameManager.gameOver==false) //oyuncunun caný bitmediyse oyun bitmediyse
         {
             Left();  //rotasyonu sola çevirme
             Right(); //rotasyonu saða çevirme
         }
+        float zRotation = transform.eulerAngles.z;
+        if (zRotation >= 100f && zRotation <= 250f)  //denizaltý y ekseninde ters döerse flipy yi true yaaprak düzeltme
+        {
+            subSprite.flipY = true;
+        }
+        else
+            subSprite.flipY = false;
 
         
     }

@@ -20,7 +20,7 @@ public class UpgradesScene : MonoBehaviour
     void Start()
     {
         //pressed = false;
-        PlayerPrefs.SetFloat("PlayerScore", 150f); //test için koydum
+        //PlayerPrefs.SetFloat("PlayerScore", 150f); //test için koydum
         CoinText.text = PlayerPrefs.GetFloat("PlayerScore").ToString();
         valueOfSprite =PlayerPrefs.GetInt("SubMarine");
         if (valueOfSprite==0)

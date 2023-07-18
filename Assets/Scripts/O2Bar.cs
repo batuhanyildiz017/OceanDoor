@@ -10,7 +10,7 @@ public class O2Bar : MonoBehaviour
     public static float maxO2;
     private float realScale;  //max oksijen seviyesi
 
-    private float timeRemaining = 5;  //düþme deðeri zamanlayýcý
+    private float timeRemaining = 3;  //düþme deðeri zamanlayýcý
     private bool timerIsRunning = false;  //zamanlayýcýnýn kontrolu
     int valueOfSprite; //kaçýncý lvl denizaltýnda olduðunu gösterecek deðiþken
     // Start is called before the first frame update
@@ -66,8 +66,8 @@ public class O2Bar : MonoBehaviour
             else
             {
                 if (O2 > 0 && GameManager.gameOver==false) 
-                    O2 -= 5;  //5 saniyede bir oksijenimizi 5 kademe düþürüyor
-                timeRemaining = 5;
+                    O2 -= 7;  //5 saniyede bir oksijenimizi 7 kademe düþürüyor
+                timeRemaining = 3;
                 timerIsRunning = true;
 
             }
