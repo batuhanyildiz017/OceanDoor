@@ -77,7 +77,7 @@ public class ObjectPool : MonoBehaviour
     } */
     IEnumerator SpawnObstacle()  // süreli engel oluþturma coroutine si
     {               
-            while (GameManager.gameOver!=true)  // oyun bitmediði sürece engel oluþtur
+            while (GameManager.gameOver!=true && GameManager.gamePassed != true)  // oyun bitmediði sürece engel oluþtur
             {
                 yield return new WaitForSeconds(obstacleSpawnInterval);
                 Shooting();

@@ -7,10 +7,13 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public static bool gamePassed; // oyun geçildiðini kontrol eden deðer
     public static bool gameOver; //oyunun bittiðini kontrol eden bool deðer    
     public static float playerScore; //oyuncunun kazandýðý puan
     float distance; //ardaki mesafe
     int valueOfSprite; // denizaltýnýn seviye deðerini tutan deðiþken
+    int gameLevel;
+
 
     public TMP_Text scoretable; //score text i 
     public TMP_Text DistanceText; //mesafe text i
@@ -29,36 +32,43 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gamePassed = false;
         gameOver = false;
         GameOverPanel.SetActive(false);
-        playerScore = PlayerPrefs.GetFloat("PlayerScore"); // oyuncunun skorunu playerprefs den çektik
+        playerScore = PlayerPrefs.GetFloat("PlayerScore"); // oyuncunun skorunu playerprefs den çektik       
         scoretable.text = "Gold: "+playerScore.ToString(); // skoru texte yazdýk.
         SubMarineLevel(); // denizaltýnýn leveline göre spriteýný güncelledik.
+        if (PlayerPrefs.GetInt("GameLevel")==0) //gamelevel 0 ise 2 e eþitle(ilk level sahnemiz yani) 0 deðilse olduðu deðere eþitle
+        {
+            gameLevel = 2;
+            PlayerPrefs.SetInt("GameLevel",2);
+        }
+        else
+            gameLevel = PlayerPrefs.GetInt("GameLevel");
     }
     public void Restart() //Restart butonuna onclick ile baðlý
     {
         gameOver = false;
-        Player.GetComponent<PlayerMovement>().health = 5;
+        //Player.GetComponent<PlayerMovement>().health = 5;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         gameOver = false;
-        Player.GetComponent<PlayerMovement>().health = 5;
+        //Player.GetComponent<PlayerMovement>().health = 5;
     }
     public void MainMenu()  // Main Menu butonuna onclick ile baðlý
     {
         gameOver = false;
-        Player.GetComponent<PlayerMovement>().health = 5;
+        //Player.GetComponent<PlayerMovement>().health = 5;
         SceneManager.LoadScene(0,LoadSceneMode.Single);
         gameOver = false;
-        Player.GetComponent<PlayerMovement>().health = 5;
+        //Player.GetComponent<PlayerMovement>().health = 5;
     }
     public void ExitButton()  // exit butonuna onclick ile baðlý
     {
         gameOver = false;
-        Player.GetComponent<PlayerMovement>().health = 5;
+        //Player.GetComponent<PlayerMovement>().health = 5;
         SceneManager.LoadScene(0, LoadSceneMode.Single);
         gameOver = false;
-        Player.GetComponent<PlayerMovement>().health = 5;
+        //Player.GetComponent<PlayerMovement>().health = 5;
     }
     // Update is called once per frame
     void Update()
@@ -77,24 +87,22 @@ public class GameManager : MonoBehaviour
             GameOverPanel.SetActive(true); //oyun bitiþ panelinin gözükmesi için
             Player.SetActive(false);  // playerin görünürlüðünü kapama
         }
+        if (gamePassed==true)
+        {
+            Player.SetActive(false);
+            PlayerPrefs.SetInt("GameLevel",gameLevel+1);
+            
+        }
 
     }
     void CalculateDistance()
     {
         Vector3 targetDirection = targetobject.transform.position - Player.transform.position;
         float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
-        okImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle)); // 180 derece ekleyerek düzeltme yapýlýyor
+        okImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle)); 
         distance = Vector2.Distance(Player.transform.position, targetobject.transform.position);
         DistanceText.text = ((int)distance).ToString();
     }
-    /* void CalculateDistance() //mesafe hesaplayarak mesafe textine yazdýrýyoruz ve okun yönünü çeviriyoruz
-     {
-         Vector3 targetDriection = targetobject.transform.position - okImage.rectTransform.position;
-         float aci = Mathf.Atan2(targetDriection.y, targetDriection.x) * Mathf.Rad2Deg;
-         okImage.rectTransform.rotation = Quaternion.Euler(new Vector3(0f, 0f, aci));
-         distance = Vector2.Distance(Player.transform.position, targetobject.transform.position);       
-         DistanceText.text =((int)distance).ToString();
-     } */
     void SubMarineLevel()
     {
         valueOfSprite = PlayerPrefs.GetInt("SubMarine");

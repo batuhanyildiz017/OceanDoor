@@ -87,10 +87,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.gameOver==false)  //oyun bitmediyse
+        if(GameManager.gameOver==false && GameManager.gamePassed==false)  //oyun bitmediyse
             transform.Translate(new Vector3(subSpeed*Time.deltaTime, 0f, 0f)); // x yönünde sürekli hareket ettirir  hýza göre
                                                                         // rotation ý deðiþtirdiðimiz için x yönü de deðiþir hep ileri gider
-        if (GameManager.gameOver==false) //oyuncunun caný bitmediyse oyun bitmediyse
+        if (GameManager.gameOver==false && GameManager.gamePassed == false) //oyuncunun caný bitmediyse oyun bitmediyse
         {
             Left();  //rotasyonu sola çevirme
             Right(); //rotasyonu saða çevirme
