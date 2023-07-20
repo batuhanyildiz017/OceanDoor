@@ -27,7 +27,12 @@ public class RandomObstacle : MonoBehaviour
     }
     private void Update()
     {
-        SetActiveTrue();
+        if (GameManager.gameStarted == true)
+        {
+            Debug.Log("gamestarted true oldu");
+            SetActiveTrue();
+        }
+        
     }
     void SetActiveFalse()
     {

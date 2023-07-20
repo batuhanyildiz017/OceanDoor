@@ -7,6 +7,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public static bool gameStarted; // oyun baþladý mý 
     public static bool gamePassed; // oyun geçildiðini kontrol eden deðer
     public static bool gameOver; //oyunun bittiðini kontrol eden bool deðer    
     public static float playerScore; //oyuncunun kazandýðý puan
@@ -24,7 +25,8 @@ public class GameManager : MonoBehaviour
     public GameObject targetobject; // oyuncunun varacaðý konum
     public GameObject Player;
     public GameObject GameOverPanel; //oyun bittiðinde çýkan panel
-
+    public GameObject GameContinuePanel; //oyun oynanýrken gözükecek panel
+    public GameObject GameonDoorPanel; //oyuna giriþte bilgi verilen panel
     public SpriteRenderer subMarine;
     public Sprite s0, s1, s2, s3;
     
@@ -32,9 +34,13 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameStarted = false;
         gamePassed = false;
         gameOver = false;
-        GameOverPanel.SetActive(false);
+        Player.SetActive(false); //oyuncu görünürlüðünü kapama
+        GameOverPanel.SetActive(false); //oyun bitince açýlan panel
+        GameContinuePanel.SetActive(false); //oyun baþladýðýnda açýlan panel
+        GameonDoorPanel.SetActive(true);  //oyuna giriþte bilgi veren panel
         playerScore = PlayerPrefs.GetFloat("PlayerScore"); // oyuncunun skorunu playerprefs den çektik       
         scoretable.text = "Gold: "+playerScore.ToString(); // skoru texte yazdýk.
         SubMarineLevel(); // denizaltýnýn leveline göre spriteýný güncelledik.
@@ -45,6 +51,10 @@ public class GameManager : MonoBehaviour
         }
         else
             gameLevel = PlayerPrefs.GetInt("GameLevel");
+    }
+    public void SkipButton()
+    {
+        gameStarted=true;
     }
     public void Restart() //Restart butonuna onclick ile baðlý
     {
@@ -90,8 +100,13 @@ public class GameManager : MonoBehaviour
         if (gamePassed==true)
         {
             Player.SetActive(false);
-            PlayerPrefs.SetInt("GameLevel",gameLevel+1);
-            
+            PlayerPrefs.SetInt("GameLevel",gameLevel+1);            
+        }
+        if (gameStarted==true)
+        {
+            Player.SetActive(true);
+            GameonDoorPanel.SetActive(false);
+            GameContinuePanel.SetActive(true);
         }
 
     }

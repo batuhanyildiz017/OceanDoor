@@ -65,7 +65,7 @@ public class O2Bar : MonoBehaviour
             }
             else
             {
-                if (O2 > 0 && GameManager.gameOver==false && GameManager.gamePassed == false) 
+                if (O2 > 0 && GameManager.gameOver==false && GameManager.gamePassed == false && GameManager.gameStarted==true) 
                     O2 -= 7;  //5 saniyede bir oksijenimizi 7 kademe düþürüyor
                 timeRemaining = 3;
                 timerIsRunning = true;
