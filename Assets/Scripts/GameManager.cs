@@ -9,11 +9,11 @@ public class GameManager : MonoBehaviour
 {
     public static bool gameStarted; // oyun baþladý mý 
     public static bool gamePassed; // oyun geçildiðini kontrol eden deðer
-    public static bool gameOver; //oyunun bittiðini kontrol eden bool deðer    
+    public static bool gameOver; //oyunun bittiðini kontrol eden bool deðer   
     public static float playerScore; //oyuncunun kazandýðý puan
     float distance; //ardaki mesafe
     int valueOfSprite; // denizaltýnýn seviye deðerini tutan deðiþken
-    int gameLevel;
+    int gameLevel;  //hangi levelde olduðumuzu gösteren deðiþken
 
 
     public TMP_Text scoretable; //score text i 
@@ -27,8 +27,9 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverPanel; //oyun bittiðinde çýkan panel
     public GameObject GameContinuePanel; //oyun oynanýrken gözükecek panel
     public GameObject GameonDoorPanel; //oyuna giriþte bilgi verilen panel
-    public SpriteRenderer subMarine;
-    public Sprite s0, s1, s2, s3;
+    public GameObject PassedPanel; //hedefe ulaþýnca çýkan panel
+    public SpriteRenderer subMarine; //denzialtý sprite renderer
+    public Sprite s0, s1, s2, s3; //denizaltý spritelarý
     
 
     // Start is called before the first frame update
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
         GameOverPanel.SetActive(false); //oyun bitince açýlan panel
         GameContinuePanel.SetActive(false); //oyun baþladýðýnda açýlan panel
         GameonDoorPanel.SetActive(true);  //oyuna giriþte bilgi veren panel
+        PassedPanel.SetActive(false);
         playerScore = PlayerPrefs.GetFloat("PlayerScore"); // oyuncunun skorunu playerprefs den çektik       
         scoretable.text = "Gold: "+playerScore.ToString(); // skoru texte yazdýk.
         SubMarineLevel(); // denizaltýnýn leveline göre spriteýný güncelledik.
@@ -99,10 +101,12 @@ public class GameManager : MonoBehaviour
         }
         if (gamePassed==true)
         {
-            Player.SetActive(false);
-            PlayerPrefs.SetInt("GameLevel",gameLevel+1);            
+            Player.SetActive(false);  //oyuncuyu kapat
+            PlayerPrefs.SetInt("GameLevel",gameLevel+1);  //play e abstýðýnda sonraki levele geçebilmesi için prefs kayddet          
+            GameContinuePanel.SetActive(false);
+            PassedPanel.SetActive(true);
         }
-        if (gameStarted==true)
+        if (gameStarted==true && gamePassed==false)
         {
             Player.SetActive(true);
             GameonDoorPanel.SetActive(false);

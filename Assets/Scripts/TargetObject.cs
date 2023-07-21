@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TargetObject : MonoBehaviour
 {
+    public GameObject FinishPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +15,8 @@ public class TargetObject : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GameManager.gamePassed = true;
+            GameManager.gamePassed = true; //oyun geçildi bool true
+            
         }
     }
 }
