@@ -13,6 +13,8 @@ public class UpgradesScene : MonoBehaviour
     public TMP_Text Text2;  //uyarýlarýn yazdýðý text
     public TMP_Text CoinText; //paramýzýn yazdýðý text
     public TMP_Text PriceText; //denizaltý ücretinin yazdýðý text
+    public TMP_Text PreviewText; //önizleme buton texti
+    public TMP_Text BuyText; //satýn al buton texti
     int valueOfSprite;
     //bool pressed;  // preview butonuna basýlýp basýlmadðýný kontrol etme
 
@@ -54,6 +56,17 @@ public class UpgradesScene : MonoBehaviour
                 Text1.text = "huge Submarine";
             else
                 Text1.text = "devasa denizalti";
+        }
+
+        if (LanguageControl.tr==false)
+        {
+            PreviewText.text = "preview";
+            BuyText.text = "buy";
+        }
+        else
+        {
+            PreviewText.text = "onizleme";
+            BuyText.text = "satin al";
         }
     }
     private void Update()

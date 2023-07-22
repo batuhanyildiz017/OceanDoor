@@ -7,18 +7,28 @@ using TMPro;
 [RequireComponent(typeof(AudioSource))]
 public class TypeWriter : MonoBehaviour
 {
-    public TMP_Text Text3;
-    public AudioClip typeSound;
-    AudioSource source;
-    string TextOpen;
+    public TMP_Text Text3;  //yazýyý yazdýrdýðýmýz text
+    public AudioClip typeSound; //ses
+    AudioSource source; //ses kaynaðý
+    string TextOpen; //yazýmýz
     bool okey;  //yazý tamamen girildiðinde klavye sesini durdurmak için deðiþken
     private void Start()
     {
         okey = false;
         source = GetComponent<AudioSource>();
-        Text3=GetComponent<TMP_Text>();
+        Text3 = GetComponent<TMP_Text>();
         source.PlayOneShot(typeSound);
-        TextOpen = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean suscipit quam nisl, a convallis tortor convallis placerat. ut rutrum viverra lobortis.";
+        if (LanguageControl.tr == true) 
+        {
+            TextOpen = "bugun karadenizin 2 kilometre altindaki, simdiye kadar bulunan dunyanin en eski gemisine gidecegiz. " +
+                "arastirmacilar tarafýndan yapilan aciklamada, bulunan geminin 2400 yil oncesine dayanan eski bir yunan ticaret gemisi oldugu soylendi.";
+        }
+        else
+        {
+            TextOpen = "today we will go to the oldest ship in the world found so far, 2 kilometers under the black sea." +
+                "In the statement made by the researchers, it was said that the ship found was an ancient greek merchant ship dating back 2400 years.";
+        }
+
         StartCoroutine(TypeWrite());
         
     }

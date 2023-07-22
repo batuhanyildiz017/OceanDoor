@@ -1887,6 +1887,8 @@ MonoBehaviour:
   Text2: {fileID: 1875593146}
   CoinText: {fileID: 46221635}
   PriceText: {fileID: 367519234}
+  PreviewText: {fileID: 1013715473}
+  BuyText: {fileID: 1607726039}
 --- !u!4 &1877402247
 Transform:
   m_ObjectHideFlags: 0
