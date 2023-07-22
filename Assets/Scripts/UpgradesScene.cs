@@ -9,10 +9,10 @@ public class UpgradesScene : MonoBehaviour
 {
     public SpriteRenderer subMarine;
     public Sprite s0,s1,s2, s3;
-    public TMP_Text Text1;
-    public TMP_Text Text2;
-    public TMP_Text CoinText;
-    public TMP_Text PriceText;
+    public TMP_Text Text1;  //denizaltý isminin yazdýðý text
+    public TMP_Text Text2;  //uyarýlarýn yazdýðý text
+    public TMP_Text CoinText; //paramýzýn yazdýðý text
+    public TMP_Text PriceText; //denizaltý ücretinin yazdýðý text
     int valueOfSprite;
     //bool pressed;  // preview butonuna basýlýp basýlmadðýný kontrol etme
 
@@ -26,21 +26,34 @@ public class UpgradesScene : MonoBehaviour
         if (valueOfSprite==0)
         {
             subMarine.sprite = s0;
-            Text1.text = "Little SubMarine";
-        }else if (valueOfSprite == 1)
+            if(LanguageControl.tr==false)
+                Text1.text = "little submarine";
+            else
+                Text1.text = "kucuk denizalti";
+        }
+        else if (valueOfSprite == 1)
         {
             subMarine.sprite = s1;
-            Text1.text = "Mid SubMarine";
+            if(LanguageControl.tr==false)
+                Text1.text = "mid submarine";
+            else
+                Text1.text = "orta denizalti";
         }
         else if (valueOfSprite == 2)
         {
             subMarine.sprite = s2;
-            Text1.text = "Big SubMarine";
+            if(LanguageControl.tr==false)
+                Text1.text = "Big SubMarine";
+            else
+                Text1.text = "buyuk denizalti";
         }
         else if (valueOfSprite == 3)
         {
             subMarine.sprite = s3;
-            Text1.text = "Huge SubMarine";
+            if(LanguageControl.tr==false)
+                Text1.text = "huge Submarine";
+            else
+                Text1.text = "devasa denizalti";
         }
     }
     private void Update()
@@ -55,27 +68,55 @@ public class UpgradesScene : MonoBehaviour
         //pressed = true;  //butona basýlmayý true yap
         if (valueOfSprite == 0)
         {
-            PriceText.text = "Price:50";
+
             //fiyatýný text ile yazdýr.
             subMarine.sprite = s1;
-            Text1.text = "Mid SubMarine";
+            if (LanguageControl.tr == false) {
+                Text1.text = "mid submarine";
+                PriceText.text = "price:50";
+            }
+            else { 
+                Text1.text = "orta denizalti";
+                PriceText.text = "fiyat:50";
+            }
         }
         else if (valueOfSprite == 1)
         {
-            PriceText.text = "Price:80";
             subMarine.sprite = s2;
-            Text1.text = "Big SubMarine";
+            if (LanguageControl.tr == false)
+            {
+                Text1.text = "big submarine";
+                PriceText.text = "price:80";
+            }
+            else
+            {
+                Text1.text = "buyuk denizalti";
+                PriceText.text = "fiyat:80";
+            }
+                
         }
         else if (valueOfSprite == 2)
         {
-            PriceText.text = "Price:100";
             subMarine.sprite = s3;
-            Text1.text = "Huge SubMarine";
+            if (LanguageControl.tr == false)
+            {
+                Text1.text = "huge Submarine";
+                PriceText.text = "price:100";
+            }
+            else
+            {
+                Text1.text = "devasa denizalti";
+                PriceText.text = "fiyat:100";
+            }
+                
         }
         else if (valueOfSprite == 3)
         {
             PriceText.text = " ";
-            Text2.text = "Your SubMarine is already the last level.";
+            if(LanguageControl.tr == false)
+                Text2.text = "Your SubMarine is already the last level.";
+            else
+                Text2.text = "denizaltin zaten son seviye";
         }
     }
     public void ConfirmButton()
@@ -83,63 +124,98 @@ public class UpgradesScene : MonoBehaviour
         
             if (valueOfSprite == 0)
             {
-                if (subMarine.sprite == s0)
-                    Text2.text = "Zaten satýn alýnmýþ";
+                if (subMarine.sprite == s0) {
+                if(LanguageControl.tr == true)
+                    Text2.text = "zaten satin alinmýs";
+                else
+                    Text2.text = "Already purchased";
+                }
                 else { 
                 if (PlayerPrefs.GetFloat("PlayerScore") > 50f)
                 {
                     subMarine.sprite = s1;
                     PlayerPrefs.SetInt("SubMarine", 1);
                     PlayerPrefs.SetFloat("PlayerScore", (PlayerPrefs.GetFloat("PlayerScore") - 50f));
-                    Text2.text = "Purchase successful";
+                    if (LanguageControl.tr == false)
+                        Text2.text = "Purchase successful";
+                    else
+                        Text2.text = "basariyla satin alindi";
                 }
                 else
                 {
-                    Text2.text = "You dont have enough money";
+                    if (LanguageControl.tr == false)
+                        Text2.text = "you dont have enough money";
+                    else
+                        Text2.text = "yeterli paran yok.";
                 }
                 }
-        }
+            }
 
             if (valueOfSprite == 1)
             {
-                if (subMarine.sprite == s1)
-                    Text2.text = "Zaten satýn alýnmýþ";
-                else { 
+            if (subMarine.sprite == s1)
+            {
+                if (LanguageControl.tr == true)
+                    Text2.text = "zaten satin alinmýs";
+                else
+                    Text2.text = "Already purchased";
+            }
+            else { 
                 if (PlayerPrefs.GetFloat("PlayerScore") > 80f)
                 {
                     subMarine.sprite = s2;
                     PlayerPrefs.SetInt("SubMarine", 2);
                     PlayerPrefs.SetFloat("PlayerScore", (PlayerPrefs.GetFloat("PlayerScore") - 80f));
-                    Text2.text = "Purchase successful";
+                    if (LanguageControl.tr == false)
+                        Text2.text = "Purchase successful";
+                    else
+                        Text2.text = "basariyla satin alindi";
                 }
                 else
                 {
-                    Text2.text = "You dont have enough money";
+                    if (LanguageControl.tr == false)
+                        Text2.text = "you dont have enough money";
+                    else
+                        Text2.text = "yeterli paran yok.";
                 }
                 }
-        }
+            }
             if (valueOfSprite == 2)
             {
-                if (subMarine.sprite == s2)
-                    Text2.text = "Zaten satýn alýnmýþ";
-                else {
+            if (subMarine.sprite == s2)
+            {
+                if (LanguageControl.tr == true)
+                    Text2.text = "zaten satin alinmýs";
+                else
+                    Text2.text = "Already purchased";
+            }
+            else {
             if (PlayerPrefs.GetFloat("PlayerScore") > 100f)
                 {
                     subMarine.sprite = s3;
                     PlayerPrefs.SetInt("SubMarine", 3);
                     PlayerPrefs.SetFloat("PlayerScore", (PlayerPrefs.GetFloat("PlayerScore") - 100f));
-                    Text2.text = "Purchase successful";
+                    if (LanguageControl.tr == false)
+                        Text2.text = "Purchase successful";
+                    else
+                        Text2.text = "basariyla satin alindi";
                 }
                 else
                 {
-                    Text2.text = "You dont have enough money";
+                    if (LanguageControl.tr == false)
+                        Text2.text = "you dont have enough money";
+                    else
+                        Text2.text = "yeterli paran yok.";
                 }
                 }
-        }
+            }
         if (valueOfSprite == 3)
         {
             //Text1.text = "Your SubMarine is already the last level.";
-            Text2.text = "Your SubMarine is already the last level.";
+            if (LanguageControl.tr == false)
+                Text2.text = "Your SubMarine is already the last level.";
+            else
+                Text2.text = "denizaltin zaten son seviye";
         }
         
         //pressed = false;  // butona basýlmayý false yap ki eðer tekrar preview butonuna basmadýysa satýn alým yapamasýn
