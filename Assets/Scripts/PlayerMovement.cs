@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     float valueOfSprite;  //denzialtý seviyesini tutuyoruz
     float subSpeed;  //denizaltý hýzý
     SpriteRenderer subSprite;  //denizaltý sprite renderer
-    
+
     Rigidbody2D rb;
     public GameObject player;
     private void Start()
@@ -71,11 +71,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Shield"))  // kalkana geldiyse sadece level 2 için level 1 de yok
+        {
+            health += 1;  //canýný 1 arttýr
+            collision.gameObject.SetActive(false); //görünürlüðü kapat
+        }
         if (collision.CompareTag("Obstacle"))
         {
             //Camera.main.DOShakeRotation(shakeTime,shakeStrength,fadeOut:true);
             Shake.Instance.ShakeCamera(shakeStrength,shakeTime);  // Shake scriptinden çaðýrdýðýmýz kod
-                                                                  // belirlediðimiz güçte ve saniyede bir engele çarptýðýmýzda kamerayý sallýyor
+                                                                      // belirlediðimiz güçte ve saniyede bir engele çarptýðýmýzda kamerayý sallýyor
         }
         if (collision.CompareTag("Energy") && O2Bar.O2<O2Bar.maxO2)
         {
@@ -103,7 +108,6 @@ public class PlayerMovement : MonoBehaviour
         else
             subSprite.flipY = false;
 
-        
     }
     void Left()
     {
