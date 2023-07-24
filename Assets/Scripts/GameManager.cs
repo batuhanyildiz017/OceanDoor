@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
             GameContinuePanel.SetActive(false);
             PassedPanel.SetActive(true);
         }
-        if (gameStarted==true && gamePassed==false)
+        if (gameStarted==true && gamePassed==false && gameOver==false)
         {
             Player.SetActive(true);
             GameonDoorPanel.SetActive(false);

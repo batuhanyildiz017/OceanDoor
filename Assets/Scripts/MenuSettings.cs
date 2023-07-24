@@ -14,8 +14,11 @@ public class MenuSettings : MonoBehaviour
         {
             PlayerPrefs.SetInt("GameLevel", 2);
         }
-
+        GameManager.gamePassed = false;
+        GameManager.gameOver = false;
         SceneManager.LoadScene(PlayerPrefs.GetInt("GameLevel"), LoadSceneMode.Single);
+        GameManager.gameOver = false;
+        GameManager.gamePassed = false;
     }
     public void QuitButton()
     {

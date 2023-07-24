@@ -23,8 +23,8 @@ public class PlayerMovement : MonoBehaviour
         SubMarineLevel(); //denizaltýnýn seviyesine göre canýný ve hýzýný deðiþtiriyoruz
         subSprite =GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        leftRotationAngle = +1f;  //sola dönme açýsý
-        rightRotationAngle = -1f;  //saða dönme açýsý
+        leftRotationAngle = +5f;  //sola dönme açýsý
+        rightRotationAngle = -5f;  //saða dönme açýsý
         //health = 5f;   //oyuncu caný
         shakeTime = 1f;  //kamerayý sallama süresi
         shakeStrength = 3f;  //kamerayý sallama gücü

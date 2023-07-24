@@ -24,6 +24,9 @@ public class ObjectPool : MonoBehaviour
             obstaclePool.Enqueue(obstacle); //oluþturulan engeli kuyruða gönder.
         }
             StartCoroutine(SpawnObstacle());   // verilen süreye göre spawnpoint noktasýndan engel oluþturuyor
+        //Debug.Log("Obstacle pool start deneme");
+        GameManager.gameOver = false;
+        GameManager.gamePassed = false;
     }
 
     GameObject GetObstacleFromPool()  // kuyruktan engel çýkarma ve görünür kýlma
@@ -32,8 +35,10 @@ public class ObjectPool : MonoBehaviour
         {
             GameObject obstacle1 = obstaclePool.Dequeue();
             obstacle1.SetActive(true);
+            //Debug.Log("GetObstaclefrompool deneme 34");
             return obstacle1;
         }
+        //Debug.Log("Returne düþtü return e düþtü");
         return null;
     }
     public void ReturnObstacleToPool(GameObject obstacle)  // iþi biten engeli tekrar kuyruða sokma ve görünürlüðünü kapatma
@@ -60,6 +65,7 @@ public class ObjectPool : MonoBehaviour
         GameObject obstacle = GetObstacleFromPool(); //kuyruktan obejyi alýp obstacle a atýyor.
         if (obstacle!=null)
         {
+            //Debug.Log("ÞUt ici deneme 12");
             obstacle.transform.position = spawnPointTransform.position; // engelin pozisyonunu spawnpoint pozisyonu olarak güncelliyor.
             obstacle.SetActive(true); // engeli görünür yapýyor.
 
@@ -77,12 +83,17 @@ public class ObjectPool : MonoBehaviour
     } */
     IEnumerator SpawnObstacle()  // süreli engel oluþturma coroutine si
     {
-        
+        //Debug.Log("Courutine debug deneme");
         while (GameManager.gameOver == false && GameManager.gamePassed == false)  // oyun bitmediði sürece engel oluþtur
-        {            
+        {
+            //Debug.Log("While içi courutine");
             yield return new WaitForSeconds(obstacleSpawnInterval);
             if (GameManager.gameStarted == true)
-                Shooting();            
+            {
+                Shooting();
+                //Debug.Log( "Shooting deneme debug");
+            }
+                            
         }        
     }
 
