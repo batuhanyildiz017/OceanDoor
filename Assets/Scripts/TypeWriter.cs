@@ -25,37 +25,43 @@ public class TypeWriter : MonoBehaviour
             if (LanguageControl.tr == true)
             {
                 TextOpen = "bugun karadenizin 2 kilometre altindaki, simdiye kadar bulunan dunyanin en eski gemisine gidecegiz. " +
-                    "arastirmacilar tarafýndan yapilan aciklamada, bulunan geminin 2400 yil oncesine dayanan eski bir yunan ticaret gemisi oldugu soylendi.";
+                    "arastirmacilar tarafýndan yapilan aciklamada, bulunan geminin 2400 yil oncesine dayanan eski bir yunan ticaret gemisi oldugu soylendi." +
+                    "yan taraftaki oku takip ederek sari bitis noktasina ulasmalisin.";
             }
             else
             {
                 TextOpen = "today we will go to the oldest ship in the world found so far, 2 kilometers under the black sea." +
-                    "In the statement made by the researchers, it was said that the ship found was an ancient greek merchant ship dating back 2400 years.";
+                    "in the statement made by the researchers, it was said that the ship found was an ancient greek merchant ship dating back 2400 years." +
+                    "you must reach the yellow end point by following the arrow on the side.";
             }
         }
         else if (gamelevel==3)
         {
             if (LanguageControl.tr == true)
             {
-                TextOpen = "bu maceramizda mariana cukuruna, dunya uzerinde bilinen en derin noktaya gidecegiz.mariana cukuru buyuk okyanusta, japonya ve endonezya arasýnda yer alýr." +
-                    "yapýlan son olcumlere gore en derin noktasi yaklasik 10.994 metredir.";
+                TextOpen = "bu maceramizda mariana cukuruna, dunya uzerinde bilinen en derin noktaya gidecegiz.mariana cukuru buyuk okyanusta, japonya ve endonezya arasinda yer alir." +
+                    "yapilan son olcumlere gore en derin noktasi yaklasik 10.994 metredir." +
+                    "yan taraftaki oku takip ederek sari bitis noktasina ulasmalisin.";
             }
             else
             {
                 TextOpen = "in this adventure, we will go to the mariana trench, the deepest known point on Earth. The mariana trench is located in the great ocean, between japan and indonesia." +
-                    " according to the latest measurements, its deepest point is approximately 10,994 meters.";
+                    " according to the latest measurements, its deepest point is approximately 10,994 meters." +
+                    "you must reach the yellow end point by following the arrow on the side.";
             }
         }else if (gamelevel == 4)
         {
             if(LanguageControl.tr == true)
             {
                 TextOpen = "yeni maceramizda 1912 de dunyanin buharli en buyuk yolcu gemisi titanikin batigina gidecegiz." +
-                    "15 nisan 1912 gecesi daha ilk seferinde bir buz dagýna carpmýs ve kuzey atlantik in buzlu sularina gomulmustur.";
+                    "15 nisan 1912 gecesi daha ilk seferinde bir buz dagýna carpmýs ve kuzey atlantik in buzlu sularina gomulmustur." +
+                    "yan taraftaki oku takip ederek sari bitis noktasina ulasmalisin.";
             }
             else
             {
                 TextOpen = "in our new adventure, we will go to the shipwreck of the world s largest steam cruise ship titanic in 1912." +
-                    " on the night of April 15, 1912, it hit an iceberg for the first time and sank into the icy waters of the North Atlantic.";
+                    " on the night of April 15, 1912, it hit an iceberg for the first time and sank into the icy waters of the north atlantic." +
+                    "you must reach the yellow end point by following the arrow on the side.";
             }
         }
         StartCoroutine(TypeWrite());

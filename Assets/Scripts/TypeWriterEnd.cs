@@ -32,10 +32,10 @@ public class TypeWriterEnd : MonoBehaviour
             }
             else
             {
-                TextOpen = "The 23 meter long ship is almost undamaged due to the lack of oxygen in the sea depth." +
-                    "The international team of researchers is in the depths of the black sea for a special mission of 3 years." +
-                    "They have discovered more than 60 shipwrecks so far." +
-                    "Go to the menu to skip to the next section and dont forget to upgrade the submarine for our next adventure.";
+                TextOpen = "the 23 meter long ship is almost undamaged due to the lack of oxygen in the sea depth." +
+                    "the international team of researchers is in the depths of the black sea for a special mission of 3 years." +
+                    "they have discovered more than 60 shipwrecks so far." +
+                    "go to the menu to skip to the next section and dont forget to upgrade the submarine for our next adventure.";
             }
         }else if (gamelevel == 4) //target noktasýnja geldiði gibi leveli arttýrdýðý için bir fazla gösteriyoz
         {
@@ -57,15 +57,15 @@ public class TypeWriterEnd : MonoBehaviour
         {
             if (LanguageControl.tr == true)
             {
-                TextOpen = "yanina geldigimiz titanic 269 m uzunluk, 28.2 m genislik, 52,310 ton agýrlýga sahipti. titanic in tam kapasitesi 3.547 kisiydi." +
-                    "gemi cok lukstu. ana güvertede yuzme havuzu, spor salonu, turk hamamý, kütüphane ve tenis kortu sunulmaktaydý." +
-                    "titanic enkazi artýk 3.657 metre derinlikte yatýyor. simdilik maceralarimiz buraya kadar.umarim yakinda yeni maceralarda gorusuruz.";
+                TextOpen = "yanina geldigimiz titanic 269 m uzunluk, 28.2 m genislik, 52,310 ton agirliga sahipti. titanic in tam kapasitesi 3.547 kisiydi." +
+                    "gemi cok lukstu. ana guvertede yuzme havuzu, spor salonu, turk hamami, kutuphane ve tenis kortu sunulmaktaydi." +
+                    "titanic enkazi artýk 3.657 metre derinlikte yatiyor. simdilik maceralarimiz buraya kadar. umarim yakinda yeni maceralarda gorusuruz.";
             }
             else
             {
-                TextOpen = "The titanic we came to had a length of 269 m, a width of 28.2 m, and a weight of 52,310 tons. Titanic's full capacity was 3,547 people." +
-                    " The ship was very luxurious. The main deck housed a swimming pool, gym, Turkish bath, library and tennis court." +
-                    " The titanic wreckage now lies at a depth of 3,657 meters. Our adventures are here for now. I hope to see you in new adventures soon.";
+                TextOpen = "the titanic we came to had a length of 269 m, a width of 28.2 m, and a weight of 52,310 tons. titanic s full capacity was 3,547 people." +
+                    " the ship was very luxurious. the main deck housed a swimming pool, gym, turkish bath, library and tennis court." +
+                    " the titanic wreckage now lies at a depth of 3,657 meters. our adventures are here for now. i hope to see you in new adventures soon.";
             }
         }
         StartCoroutine(TypeWrite());
