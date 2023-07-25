@@ -35,10 +35,10 @@ public class O2Bar : MonoBehaviour
         {
             O2 = 200;
         }
-        else if (valueOfSprite == 3)
+      /*  else if (valueOfSprite == 3)
         {
             O2 = 250;
-        }
+        } */
         maxO2 = O2;
         timerIsRunning = true;
     }

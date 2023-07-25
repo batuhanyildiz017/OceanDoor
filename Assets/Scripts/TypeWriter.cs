@@ -45,6 +45,18 @@ public class TypeWriter : MonoBehaviour
                 TextOpen = "in this adventure, we will go to the mariana trench, the deepest known point on Earth. The mariana trench is located in the great ocean, between japan and indonesia." +
                     " according to the latest measurements, its deepest point is approximately 10,994 meters.";
             }
+        }else if (gamelevel == 4)
+        {
+            if(LanguageControl.tr == true)
+            {
+                TextOpen = "yeni maceramizda 1912 de dunyanin buharli en buyuk yolcu gemisi titanikin batigina gidecegiz." +
+                    "15 nisan 1912 gecesi daha ilk seferinde bir buz dagýna carpmýs ve kuzey atlantik in buzlu sularina gomulmustur.";
+            }
+            else
+            {
+                TextOpen = "in our new adventure, we will go to the shipwreck of the world s largest steam cruise ship titanic in 1912." +
+                    " on the night of April 15, 1912, it hit an iceberg for the first time and sank into the icy waters of the North Atlantic.";
+            }
         }
         StartCoroutine(TypeWrite());
         

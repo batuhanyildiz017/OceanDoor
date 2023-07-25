@@ -1882,7 +1882,6 @@ MonoBehaviour:
   s0: {fileID: 21300000, guid: 8cc946dbbf114aa4b99a8aa0f874b8e7, type: 3}
   s1: {fileID: 21300000, guid: 8b926eac11f89bc45881a5655d1de074, type: 3}
   s2: {fileID: 21300000, guid: 4d4954c4fa8af6947bb5ee82ed06b7e7, type: 3}
-  s3: {fileID: 21300000, guid: 3305bb74591704443ada5a3f085547fd, type: 3}
   Text1: {fileID: 466103810}
   Text2: {fileID: 1875593146}
   CoinText: {fileID: 46221635}

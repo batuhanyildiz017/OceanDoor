@@ -8,7 +8,7 @@ using TMPro;
 public class UpgradesScene : MonoBehaviour
 {
     public SpriteRenderer subMarine;
-    public Sprite s0,s1,s2, s3;
+    public Sprite s0,s1,s2;
     public TMP_Text Text1;  //denizaltý isminin yazdýðý text
     public TMP_Text Text2;  //uyarýlarýn yazdýðý text
     public TMP_Text CoinText; //paramýzýn yazdýðý text
@@ -49,23 +49,23 @@ public class UpgradesScene : MonoBehaviour
             else
                 Text1.text = "buyuk denizalti";
         }
-        else if (valueOfSprite == 3)
+       /* else if (valueOfSprite == 3)
         {
             subMarine.sprite = s3;
             if(LanguageControl.tr==false)
                 Text1.text = "huge Submarine";
             else
                 Text1.text = "devasa denizalti";
-        }
+        } */
 
         if (LanguageControl.tr==false)
         {
-            PreviewText.text = "preview";
+            PreviewText.text = "next";
             BuyText.text = "buy";
         }
         else
         {
-            PreviewText.text = "onizleme";
+            PreviewText.text = "sonraki";
             BuyText.text = "satin al";
         }
     }
@@ -108,7 +108,7 @@ public class UpgradesScene : MonoBehaviour
             }
                 
         }
-        else if (valueOfSprite == 2)
+       /* else if (valueOfSprite == 2)
         {
             subMarine.sprite = s3;
             if (LanguageControl.tr == false)
@@ -122,8 +122,8 @@ public class UpgradesScene : MonoBehaviour
                 PriceText.text = "fiyat:100";
             }
                 
-        }
-        else if (valueOfSprite == 3)
+        } */
+        else if (valueOfSprite == 2)
         {
             PriceText.text = " ";
             if(LanguageControl.tr == false)
@@ -144,7 +144,7 @@ public class UpgradesScene : MonoBehaviour
                     Text2.text = "Already purchased";
                 }
                 else { 
-                if (PlayerPrefs.GetFloat("PlayerScore") > 50f)
+                if (PlayerPrefs.GetFloat("PlayerScore") >= 50f)
                 {
                     subMarine.sprite = s1;
                     PlayerPrefs.SetInt("SubMarine", 1);
@@ -174,7 +174,7 @@ public class UpgradesScene : MonoBehaviour
                     Text2.text = "Already purchased";
             }
             else { 
-                if (PlayerPrefs.GetFloat("PlayerScore") > 80f)
+                if (PlayerPrefs.GetFloat("PlayerScore") >= 80f)
                 {
                     subMarine.sprite = s2;
                     PlayerPrefs.SetInt("SubMarine", 2);
@@ -193,7 +193,7 @@ public class UpgradesScene : MonoBehaviour
                 }
                 }
             }
-            if (valueOfSprite == 2)
+          /*  if (valueOfSprite == 2)
             {
             if (subMarine.sprite == s2)
             {
@@ -203,7 +203,7 @@ public class UpgradesScene : MonoBehaviour
                     Text2.text = "Already purchased";
             }
             else {
-            if (PlayerPrefs.GetFloat("PlayerScore") > 100f)
+            if (PlayerPrefs.GetFloat("PlayerScore") >= 100f)
                 {
                     subMarine.sprite = s3;
                     PlayerPrefs.SetInt("SubMarine", 3);
@@ -221,8 +221,8 @@ public class UpgradesScene : MonoBehaviour
                         Text2.text = "yeterli paran yok.";
                 }
                 }
-            }
-        if (valueOfSprite == 3)
+            } */
+        if (valueOfSprite == 2)
         {
             //Text1.text = "Your SubMarine is already the last level.";
             if (LanguageControl.tr == false)

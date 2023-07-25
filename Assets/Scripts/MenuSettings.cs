@@ -16,6 +16,10 @@ public class MenuSettings : MonoBehaviour
         }
         GameManager.gamePassed = false;
         GameManager.gameOver = false;
+        if (PlayerPrefs.GetInt("GameLevel") == 5)  //oyunun 3 levelini de bitirdiyse oynaya bastýðýnda son leveli açmasý için
+        {
+            PlayerPrefs.SetInt("GameLevel", 4);
+        }
         SceneManager.LoadScene(PlayerPrefs.GetInt("GameLevel"), LoadSceneMode.Single);
         GameManager.gameOver = false;
         GameManager.gamePassed = false;

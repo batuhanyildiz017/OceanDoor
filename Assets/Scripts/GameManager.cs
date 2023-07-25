@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public GameObject GameonDoorPanel; //oyuna giriþte bilgi verilen panel
     public GameObject PassedPanel; //hedefe ulaþýnca çýkan panel
     public SpriteRenderer subMarine; //denzialtý sprite renderer
-    public Sprite s0, s1, s2, s3; //denizaltý spritelarý
+    public Sprite s0, s1, s2; //denizaltý spritelarý
     
 
     // Start is called before the first frame update
@@ -140,10 +140,10 @@ public class GameManager : MonoBehaviour
             subMarine.sprite = s2;
             
         }
-        else if (valueOfSprite == 3)
+       /* else if (valueOfSprite == 3)
         {
             subMarine.sprite = s3;
             
-        }
+        } */
     }
 }

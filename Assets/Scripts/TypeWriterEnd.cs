@@ -53,6 +53,21 @@ public class TypeWriterEnd : MonoBehaviour
                     "return to the menu to skip to the next chapter and dont forget to upgrade your sub for our next adventure.";
             }
         }
+        else if (gamelevel==5)
+        {
+            if (LanguageControl.tr == true)
+            {
+                TextOpen = "yanina geldigimiz titanic 269 m uzunluk, 28.2 m genislik, 52,310 ton agýrlýga sahipti. titanic in tam kapasitesi 3.547 kisiydi." +
+                    "gemi cok lukstu. ana güvertede yuzme havuzu, spor salonu, turk hamamý, kütüphane ve tenis kortu sunulmaktaydý." +
+                    "titanic enkazi artýk 3.657 metre derinlikte yatýyor. simdilik maceralarimiz buraya kadar.umarim yakinda yeni maceralarda gorusuruz.";
+            }
+            else
+            {
+                TextOpen = "The titanic we came to had a length of 269 m, a width of 28.2 m, and a weight of 52,310 tons. Titanic's full capacity was 3,547 people." +
+                    " The ship was very luxurious. The main deck housed a swimming pool, gym, Turkish bath, library and tennis court." +
+                    " The titanic wreckage now lies at a depth of 3,657 meters. Our adventures are here for now. I hope to see you in new adventures soon.";
+            }
+        }
         StartCoroutine(TypeWrite());
 
     }

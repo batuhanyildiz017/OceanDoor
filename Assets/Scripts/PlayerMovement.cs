@@ -46,11 +46,11 @@ public class PlayerMovement : MonoBehaviour
             health = 6f;
             subSpeed = 8f;
         }
-        else if (valueOfSprite==3)
+       /* else if (valueOfSprite==3)
         {
             health = 7f;
-            subSpeed = 9.5f;
-        }
+            subSpeed = 9f;
+        } */
     }
     public void MakeTrueLeft()  //sol butona basýldýðýný kontrol etme
     {
